@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sample angular table</title>
+	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	 <style>
+         table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+         
+         table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+         }
+         
+         table tr:nth-child(even) {
+            background-color: #ffffff;
+         }
+      </style>
+</head>
+<body>
+<div ng-app='myApp' ng-controller='myController'>
+
+
+	<table border='0'>
+	<tr>
+		<td>Enter first name: </td>
+		<td><input type="text" name="firstname" ng-model='student.firstname'></td>
+	</tr>
+	<tr>
+		<td>Enter last name: </td>
+		<td><input type="text" name="lastname" ng-model='student.lastname'></td>
+	</tr>
+	<tr>
+		<td>Name: </td>
+		<td>{{student.fullname()}}</td>
+	</tr>
+	<tr>
+		<td>Subject: </td>
+		<td>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Marks</th>
+					</tr>
+					<tr ng-repeat='Subject in student.subjects'>
+						<td>{{Subject.name}}</td>
+						<td>{{Subject.marks}}</td>
+					</tr>
+				</thead>
+			</table>
+		</td>
+	</tr>
+	</table>
+	<input type="checkbox" ng-model='enablecheckbox'>Disable button
+	<button ng-disabled='enablecheckbox'>Click me!!!</button>
+
+	<input type="checkbox" ng-model='showbox'>show button
+	<button ng-show='showbox'>Click me!!!</button>
+
+	<input type="checkbox" ng-model='hidebox'>Hide button
+	<button ng-hide='hidebox'>Click me!!!</button>
+	<br />
+
+	<p>Enter a number: <input type="number" ng-model='number' /></p>
+	<button ng-click = "square()">X<sup>2</sup></button>
+	<p>Result: {{result}}</p>
+</div>
+<script>
+	var myApp=angular.module('myApp',[]);
+
+	myApp.factory('mathService', function(){
+		var factory={};
+		factory.multiply= function(a,b){
+			return a*b;
+		}
+		return factory;
+	});
+
+	myApp.service('calService', function(mathService){
+		this.square= function(a){
+			return mathService.multiply(a,a);
+		}
+	});
+
+	myApp.controller('myController', function($scope,calService){
+		$scope.student= {
+			firstname: 'aadil',
+			lastname:'adam',
+			subjects:[
+			{name:'phtsics',marks:70},
+			{name:'chemitry',marks:90},
+			{name:'math',marks:88},
+			{name:'Biology',marks:93},
+			{name:'english',marks:87},
+			],
+
+			fullname: function(){
+				var studentObject;
+				studentObject= $scope.student;
+				return studentObject.firstname+ ' '+ studentObject.lastname;
+			}
+		};
+
+		$scope.square= function(){
+			$scope.result=calService.square($scope.number);
+		}
+	});
+
+	
+</script>
+
+</body>
+</html>

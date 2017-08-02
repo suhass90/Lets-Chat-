@@ -1,0 +1,95 @@
+<p style="text-align: center; ">Welcome to the message center</p>
+
+<div style="margin-left: 10px;">
+	<input type="button" value="Compose" ng-click="ComposeMsg()" class="btn btn-primary">
+</div>
+<br />
+<br />
+
+<div ng-show="composeForm" class="msgSend">
+	<form ng-submit="send()">
+		<div class="form-group">
+			<label>To: </label>
+			<input type="text" ng-model="receiver_name" class="form-control"/>
+		</div><br />
+		<div class="form-group">
+			<label>Subject:</label>
+			<input type="text" ng-model="subject" class="form-control"/>
+		</div><br />
+		<div class="form-group">
+			<label>Message:</label>
+			<input type="text" ng-model="MsgBody" class="form-control"/>
+		</div><br />
+		<div>
+			<button type="submit" class="btn btn-primary">Send</button>
+			<button ng-click='delete()' class="btn btn-primary"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+		</div>
+	</form>
+</div>
+<br />
+<br />
+
+<table border='1' style="border-collapse: collapse;" width="100%" class="table table-striped" ng-show="tableList">
+	<thead>
+			<th>Sender</th>
+			<th>Subject</th>
+			<th colspan='2'></th>
+	</thead>
+	<tbody >
+		<tr ng-repeat="messages in obj_message track by $index">
+			<td>{{messages.from}}</td>
+			<td>{{messages.sub}}</td>
+			<td>{{messages.imp}}</td>
+			<td><input id ="viewBtn_{{$index}}" ng-click='viewBtn($index)' style='background-color:yellow; padding: 10px; border:5px; border-radius: 3px; margin: 5px;' type = 'button' class="btn btn-primary" value='View'>
+				<input id ="delBtn_{{$index}}" ng-click='deleteMsg($index)' style='background-color:yellow; padding: 10px; border:5px; border-radius: 3px; margin: 5px;' type='button' class="btn btn-primary" value='Delete'>
+				<input id ="imp_{{$index}}" ng-click='ImpMsg($index)' style='background-color:yellow; padding: 10px; border:5px; border-radius: 3px; margin: 5px;' class="btn btn-primary" type='button' value='Imp'>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="row">
+	<div ng-show='messageDetails' id="messageDetails" class='col-md-6'>
+		<form>
+			<div class="form-group">
+				<label>Message From:</label>
+				<input type="text" ng-model='messageFrom' class="form-control">
+			</div>
+			<div class="form-group">
+				<label>Subject:</label>
+				<input type="text" ng-model='messageSub' class="form-control">
+			</div><br />
+			<div class="form-group">
+				<label>Message Text:</label>
+				<input type="text" ng-model='messageText' class="form-control">
+			</div><br />
+			<div>
+				<input type="submit" value="Reply" class='btn btn-primary' ng-click="MessageReply()" />
+				<input type="button" value="Back" class='btn btn-primary' ng-click='GoBack()' />
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="row">
+	<div ng-show="replyForm" class="msgSend" class="col-md-6">
+		<form ng-submit="send()">
+			<div class="form-group">
+				<label>To: </label>
+				<input type="text" ng-model="receiver_name" class="form-control"/>
+			</div><br />
+			<div class="form-group">
+				<label>Subject:</label>
+				<input type="text" ng-model="subject" class="form-control"/>
+			</div><br />
+			<div class="form-group">
+				<label>Message:</label>
+				<input type="text" ng-model="MsgBody" class="form-control"/>
+			</div><br />
+			<div>
+				<button type="submit" class="btn btn-primary">Send</button>
+			</div>
+		</form>
+	</div>
+</div>
+

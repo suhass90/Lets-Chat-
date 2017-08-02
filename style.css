@@ -1,0 +1,83 @@
+#loginForm {
+	padding: 20px;
+   width: 400px;
+   height: 250px;
+   border: 2px solid black;
+   border-radius: 5px;
+	margin-top: 100px;
+	margin-left: 100px;
+}
+
+nav {
+	background-color: #262626;
+	border-radius: 5px;
+	margin-top: 5px;
+}
+
+ul {
+   	list-style-type: none;
+   	margin: 0;
+   	padding: 0;
+   	overflow: hidden;
+}
+
+li {
+   	float: left;
+}
+
+li a {
+   	display: block;
+   	color: white;
+   	text-align: center;
+   	padding: 14px 16px;
+   	text-decoration: none;
+   	-webkit-transition-duration: 0.4s;
+   	transition-duration: 0.4s;
+}
+li a:hover{
+    background-color: red;
+
+}
+
+#userInfo {
+   border: 2px solid black;
+   margin-left: 100px;
+   margin-top: 100px;
+   border-radius: 5px;
+   padding: 10px;
+   width: 500px;
+}
+
+#updatefm {
+   border: 2px solid black;
+   margin-left: 100px;
+   border-radius: 5px;
+   padding: 10px;
+   width: 500px;
+}
+
+.msgSend {
+   border-radius: 5px;
+   border: 2px solid green;
+   padding: 30px;
+}
+
+#messageDetails{
+   border: 2px solid black;
+   border-radius: 5px;
+   text-align: center;
+   margin-left: 30px;
+}
+
+/*
+messages tab:
+
+1. compose tab: click the button, pull out the compose message form.
+2. fill out the form with relevant details to send to the receiver., click on the send button.
+3. send button: click on send button to submit the form. match the name from the "to" field  to the username of the object.
+4. use ng-repeat to populate the list of messages from the local storage and display with 3 buttons- view, delete, important star in the html page.
+5. when we click view-the lsit should be hidden and a div container should appear with the details of the message- subject, from, content. it should also contain a button for reply, delete.
+6. delete- should remove tht entry from the list and remve from the local storage. 
+7. important button should highlight that message with some icon.
+
+8. the reply button should pull out the same update form send the reply to other person.
